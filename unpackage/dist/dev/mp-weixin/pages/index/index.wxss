@@ -1,0 +1,17 @@
+
+.content {
+		width: 100%;
+}
+.uni-margin-wrap{
+		width: 100%;
+		height: auto;
+}
+.lbt{
+		width: 100%;
+}
+.main{
+		height: 100px;
+		line-height: 100px;
+		text-align: center;
+		width: 100%;
+}

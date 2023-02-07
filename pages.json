@@ -1,0 +1,61 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "没用的工具箱test"
+			}
+		}
+	    ,{
+            "path" : "pages/component/me",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/component/add",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [ {
+			"pagePath": "pages/index/index",
+			"iconPath": "static/icon/rcd-home.png",
+			"selectedIconPath": "static/icon/rcd-home-f.png",
+			"text": "主页"
+		},
+		{
+			"pagePath": "pages/component/add",
+			"iconPath": "static/icon/rcd-plus-circle.png",
+			"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
+			"text": "发表"
+		},
+		{
+			"pagePath": "pages/component/me",
+			"iconPath": "static/icon/rcd-user.png",
+			"selectedIconPath": "static/icon/rcd-user-f.png",
+			"text": "我的"
+		}]
+	}
+}

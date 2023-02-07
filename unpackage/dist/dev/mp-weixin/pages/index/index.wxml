@@ -1,0 +1,1 @@
+<view class="content"><view class="uni-margin-wrap"><swiper class="swiper" circular indicator-dots="{{true}}" autoplay="true" interval="{{2000}}" duration="{{b}}"><swiper-item wx:for="{{a}}" wx:for-item="i" wx:key="b"><image class="lbt" src="{{i.a}}"></image></swiper-item></swiper></view><view class="main"><text>208082474@qq.com</text></view></view>
