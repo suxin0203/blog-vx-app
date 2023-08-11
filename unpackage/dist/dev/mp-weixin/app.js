@@ -1,11 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports[Symbol.toStringTag] = "Module";
-var common_vendor = require("./common/vendor.js");
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const common_vendor = require("./common/vendor.js");
 if (!Math) {
   "./pages/index/index.js";
   "./pages/component/me.js";
   "./pages/component/add.js";
+  "./pages/component/blog-detail.js";
 }
 const _sfc_main = {
   onLaunch: function() {
@@ -18,7 +18,7 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-var App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/\u684C\u9762/uniapp\u9879\u76EE/TestProject/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/Git_项目/vxapp/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   return {

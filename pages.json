@@ -3,28 +3,31 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "没用的工具箱test"
+				"navigationBarTitleText": "Suxin's blog"
 			}
+		}, {
+			"path": "pages/component/me",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/component/add",
+			"style": {
+				"navigationBarTitleText": "文章发表",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/component/blog-detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/component/me",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/component/add",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -39,23 +42,24 @@
 		"selectedColor": "#3cc51f",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
-		"list": [ {
-			"pagePath": "pages/index/index",
-			"iconPath": "static/icon/rcd-home.png",
-			"selectedIconPath": "static/icon/rcd-home-f.png",
-			"text": "主页"
-		},
-		{
-			"pagePath": "pages/component/add",
-			"iconPath": "static/icon/rcd-plus-circle.png",
-			"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-			"text": "发表"
-		},
-		{
-			"pagePath": "pages/component/me",
-			"iconPath": "static/icon/rcd-user.png",
-			"selectedIconPath": "static/icon/rcd-user-f.png",
-			"text": "我的"
-		}]
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/rcd-home.png",
+				"selectedIconPath": "static/icon/rcd-home-f.png",
+				"text": "主页"
+			},
+			{
+				"pagePath": "pages/component/add",
+				"iconPath": "static/icon/rcd-plus-circle.png",
+				"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
+				"text": "发表"
+			},
+			{
+				"pagePath": "pages/component/me",
+				"iconPath": "static/icon/rcd-user.png",
+				"selectedIconPath": "static/icon/rcd-user-f.png",
+				"text": "我的"
+			}
+		]
 	}
 }
