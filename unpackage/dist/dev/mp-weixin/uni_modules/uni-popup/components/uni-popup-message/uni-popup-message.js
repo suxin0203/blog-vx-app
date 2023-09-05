@@ -56,5 +56,5 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     c: common_vendor.n("uni-popup__" + $props.type)
   };
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "F:/Git_项目/vxapp/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/myProject/blog-vx-app/uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.vue"]]);
 wx.createComponent(Component);

@@ -119,7 +119,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        b: common_vendor.sr(message, "1cb77cb6-0", {
+        b: common_vendor.sr(message, "11fcb8e0-0", {
           "k": "message"
         }),
         c: common_vendor.p({
@@ -150,7 +150,7 @@ const _sfc_main = {
         m: common_vendor.o(onChooseAvatar),
         n: common_vendor.unref(nickName),
         o: common_vendor.o(($event) => common_vendor.isRef(nickName) ? nickName.value = $event.detail.value : nickName = $event.detail.value),
-        p: common_vendor.sr("baseForm", "1cb77cb6-3,1cb77cb6-2"),
+        p: common_vendor.sr("baseForm", "11fcb8e0-3,11fcb8e0-2"),
         q: common_vendor.p({
           modelValue: common_vendor.unref(baseFormData),
           ["label-position"]: "top"
@@ -163,5 +163,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/Git_项目/vxapp/pages/component/me.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/myProject/blog-vx-app/pages/component/me.vue"]]);
 wx.createPage(MiniProgramPage);

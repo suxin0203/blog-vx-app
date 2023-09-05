@@ -7082,7 +7082,7 @@ const pages = [
   {
     path: "pages/index/index",
     style: {
-      navigationBarTitleText: "Suxin's blog"
+      navigationStyle: "custom"
     }
   },
   {
@@ -9679,3 +9679,4 @@ exports.s = s$1;
 exports.sr = sr;
 exports.t = t$1;
 exports.unref = unref;
+exports.wx$1 = wx$1;

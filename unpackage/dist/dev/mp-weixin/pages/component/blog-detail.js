@@ -59,5 +59,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/Git_项目/vxapp/pages/component/blog-detail.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/myProject/blog-vx-app/pages/component/blog-detail.vue"]]);
 wx.createPage(MiniProgramPage);

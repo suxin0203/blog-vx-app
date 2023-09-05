@@ -60,7 +60,7 @@ const _sfc_main = {
           label: "内容",
           required: true
         }),
-        l: common_vendor.sr("baseForm", "6d86d838-2,6d86d838-1"),
+        l: common_vendor.sr("baseForm", "9819f7ee-2,9819f7ee-1"),
         m: common_vendor.p({
           modelValue: common_vendor.unref(baseFormData)
         }),
@@ -73,5 +73,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "F:/Git_项目/vxapp/pages/component/add.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/myProject/blog-vx-app/pages/component/add.vue"]]);
 wx.createPage(MiniProgramPage);
