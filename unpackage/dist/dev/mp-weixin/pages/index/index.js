@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const common_api = require("../../common/api.js");
 if (!Array) {
   const _easycom_uni_search_bar2 = common_vendor.resolveComponent("uni-search-bar");
   const _easycom_uni_swiper_dot2 = common_vendor.resolveComponent("uni-swiper-dot");
@@ -22,12 +23,7 @@ const _sfc_main = {
     let searchBarStyle = common_vendor.ref("");
     let statusBarHeight = common_vendor.ref(0);
     let lbt = common_vendor.reactive([]);
-    let datalist = common_vendor.reactive([]);
-    common_vendor.reactive([
-      { value: 0, text: "篮球" },
-      { value: 1, text: "足球" },
-      { value: 2, text: "游泳" }
-    ]);
+    let datalist = common_vendor.ref([]);
     common_vendor.ref("");
     let current = common_vendor.ref(0);
     let total = common_vendor.ref(0);
@@ -37,7 +33,7 @@ const _sfc_main = {
     common_vendor.ref(0);
     const checkCategory = (id) => {
       common_vendor.index.navigateTo({
-        url: `/pages/component/blog-detail?id=${id}`
+        url: `/pages/component/detail?id=${id}`
       });
     };
     const formatTime = (timestamp) => {
@@ -48,54 +44,48 @@ const _sfc_main = {
       const hour = date.getHours();
       const minute = date.getMinutes();
       const second = date.getSeconds();
-      const formattedDate = `${year}-${padZero(month)}-${padZero(day)}`;
+      const formattedDate = `${year}/${padZero(month)}/${padZero(day)}`;
       const formattedTime = `${padZero(hour)}:${padZero(minute)}:${padZero(second)}`;
-      return formattedDate + formattedTime;
+      return formattedDate + " " + formattedTime;
     };
     const padZero = (value) => {
       return value < 10 ? `0${value}` : value;
     };
     const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0) => {
-      common_vendor.index.request({
-        url: "https://api.suxin23.cn/blog/search",
-        method: "GET",
-        data: {
-          page: pages,
-          pageSize: pageSizes,
-          keyword: keywords,
-          categoryId: categoryIds
-        },
-        success: (res) => {
-          total.value = Number(res.data.data.count);
-          detail_current.value = Number(res.data.data.page);
-          pageSize.value = Number(res.data.data.pageSize);
-          datalist.splice(0, datalist.length, ...res.data.data.rows);
-        },
-        fail: (err) => {
-          console.error(err);
-        }
+      common_api.get("/articles/", {
+        page: pages,
+        pageSize: pageSizes,
+        keyword: keywords,
+        categoryId: categoryIds
+      }).then((res) => {
+        total.value = Number(res.data.pagination.total);
+        detail_current.value = Number(res.data.pagination.page);
+        pageSize.value = Number(res.data.pagination.pageSize);
+        datalist.value = res.data.data;
       });
     };
+    const getSwiperList = () => {
+      common_api.get("/upload/imglist").then((res) => {
+        lbt = res.data.data;
+      });
+    };
+    common_vendor.wx$1.showShareMenu({
+      withShareTicket: true,
+      menu: ["shareAppMessage", "shareTimeline"]
+    });
     common_vendor.onLoad(() => {
       common_vendor.index.getSystemInfo({
         success: (res) => {
           const statusBar = res.statusBarHeight || 0;
           res.titleBarHeight || 0;
           statusBarHeight.value = statusBar;
-          console.log(common_vendor.wx$1.getMenuButtonBoundingClientRect());
           searchBarStyle.value = `margin-top: ${common_vendor.wx$1.getMenuButtonBoundingClientRect().top - 7}px; width: ${common_vendor.wx$1.getSystemInfoSync().screenWidth - common_vendor.wx$1.getMenuButtonBoundingClientRect().width - 10}px;`;
         }
       });
     });
     common_vendor.onReady(() => {
-      common_vendor.index.request({
-        url: "https://api.suxin23.cn/lbt/imglist",
-        //仅为示例，并非真实接口地址。
-        success: (res) => {
-          lbt.push(...res.data.data);
-        }
-      });
       fetchBlogData();
+      getSwiperList();
     });
     const changeinput = () => {
       detail_current.value = 1;
@@ -143,10 +133,10 @@ const _sfc_main = {
             a: common_vendor.t(item.content),
             b: item.id,
             c: common_vendor.o(($event) => checkCategory(item.id), item.id),
-            d: "20f4664f-3-" + i0 + ",20f4664f-2",
+            d: "4fa3e5a1-3-" + i0 + ",4fa3e5a1-2",
             e: common_vendor.p({
               title: item.title,
-              extra: formatTime(item.create_time)
+              extra: formatTime(item.created_at)
             })
           };
         }),
@@ -159,7 +149,6 @@ const _sfc_main = {
         m: common_vendor.p({
           current: common_vendor.unref(detail_current),
           total: common_vendor.unref(total),
-          title: "标题文字",
           pageSize: common_vendor.unref(pageSize),
           ["show-icon"]: true
         }),
@@ -170,5 +159,6 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/myProject/blog-vx-app/pages/index/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/index/index.vue"]]);
+_sfc_main.__runtimeHooks = 2;
 wx.createPage(MiniProgramPage);

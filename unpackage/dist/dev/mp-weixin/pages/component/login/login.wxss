@@ -1,0 +1,12 @@
+
+.avatar-wrapper {
+		margin-top: 10px;
+		padding: 0;
+		height: 200rpx;
+		width: 200rpx;
+}
+.avatar {
+		background: #fff;
+		height: 200rpx;
+		width: 200rpx;
+}

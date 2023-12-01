@@ -1,1 +1,0 @@
-<view class="main"><uni-card wx:if="{{b}}" u-s="{{['d']}}" u-i="3f1b0278-0" bind:__l="__l" u-p="{{b}}"><rich-text nodes="{{a}}"></rich-text></uni-card></view>

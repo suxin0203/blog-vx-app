@@ -5,7 +5,9 @@ if (!Math) {
   "./pages/index/index.js";
   "./pages/component/me.js";
   "./pages/component/add.js";
-  "./pages/component/blog-detail.js";
+  "./pages/component/detail.js";
+  "./pages/component/login/login.js";
+  "./pages/component/userinfo/userinfo.js";
 }
 const _sfc_main = {
   onLaunch: function() {
@@ -18,7 +20,7 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/myProject/blog-vx-app/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   return {

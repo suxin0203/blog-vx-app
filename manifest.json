@@ -1,5 +1,5 @@
 {
-    "name" : "TestProject",
+    "name" : "suxinblog",
     "appid" : "__UNI__11BDF93",
     "description" : "",
     "versionName" : "1.0.0",
@@ -51,12 +51,15 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid" : "wx15276ccd959c150c",
+        "onShareTimeline" : true,
+        "onAddToFavorites" : true,
         "setting" : {
             "urlCheck" : false,
             "es6" : false,
             "minified" : true
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true

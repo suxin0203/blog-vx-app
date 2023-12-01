@@ -1,12 +1,6 @@
 <template>
 	<view class="content">
 		<view :style="searchBarStyle">
-<!-- 			    <uni-data-select
-				style="margin: 0 10px;width: 100px;display: inline-block;"
-			      v-model="selectvalue"
-			      :localdata="selectdata"
-			      @change="change"
-			    ></uni-data-select> -->
 			<uni-search-bar class="uni-mt-10" radius="100" placeholder="请输入想要搜的内容" v-model="keyword" clearButton="auto"
 				cancelButton="none" @confirm="changeinput" />
 		</view>
@@ -25,35 +19,15 @@
 
 
 		<uni-section title="文章" type="line" titleFontSize="18px">
-						<uni-card :title="item.title" :extra="formatTime(item.create_time)" v-for="item in datalist" :key="item.id" @click="checkCategory(item.id)">
-							<text class="uni-body">{{item.content}}..</text>
-						</uni-card>
-			
-<!-- 			<uni-card :title="item.title" :extra="formatTime(item.create_time)" v-for="item in datalist" :key="item.id"
+			<uni-card :title="item.title" :extra="formatTime(item.created_at)" v-for="item in datalist" :key="item.id"
 				@click="checkCategory(item.id)">
-				<image mode="widthFix" style="width: 100%;margin-bottom: 5px;"
-					src="https://api.suxin23.cn/upload/402407191945285.png"></image>
-				<text class="uni-body">{{item.content}}..</text>
-				<hr>
-				<view slot="actions" class="card-actions">
-					<view class="card-actions-item" @click="actionsClick('分享')">
-						<uni-icons type="redo" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">分享</text>
-					</view>
-					<view class="card-actions-item" @click="actionsClick('点赞')">
-						<uni-icons type="heart" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">点赞</text>
-					</view>
-					<view class="card-actions-item" @click="actionsClick('评论')">
-						<uni-icons type="chatbubble" size="18" color="#999"></uni-icons>
-						<text class="card-actions-item-text">评论</text>
-					</view>
-				</view>
-			</uni-card> -->
+				<text class="uni-body" style="font-size: 12px;color:gray">{{item.content}}..</text>
+			</uni-card>
+
 
 		</uni-section>
 		<view class="fenye">
-			<uni-pagination :current="detail_current" :total="total" title="标题文字" :pageSize="pageSize" :show-icon="true"
+			<uni-pagination :current="detail_current" :total="total" :pageSize="pageSize" :show-icon="true"
 				@change="changeDetail" />
 			<text class="example-info">当前页：{{ detail_current }}，数据总量：{{ total }}条，每页数据：{{ pageSize }}</text>
 		</view>
@@ -70,17 +44,16 @@
 		onLoad,
 		onReady
 	} from '@dcloudio/uni-app';
+	import {
+		post,
+		get
+	} from "../../common/api";
 
 	let searchBarStyle = ref('')
 	let statusBarHeight = ref(0)
 	let lbt = reactive([])
-	let datalist = reactive([])
-	let selectdata = reactive([
-        { value: 0, text: "篮球" },
-        { value: 1, text: "足球" },
-        { value: 2, text: "游泳" },
-      ])
-	  let selectvalue = ref('')
+	let datalist = ref([])
+	let selectvalue = ref('')
 	let current = ref(0)
 	let total = ref(0)
 	let detail_current = ref(1)
@@ -88,15 +61,10 @@
 	let keyword = ref("")
 	let categoryId = ref(0)
 
-	const clicknotices = ((id) => {
-		uni.navigateTo({
-			url: `/pages/component/blog-detail?id=${id}`
-		});
-	})
 
 	const checkCategory = (id) => {
 		uni.navigateTo({
-			url: `/pages/component/blog-detail?id=${id}`
+			url: `/pages/component/detail?id=${id}`
 		});
 	};
 	const formatTime = (timestamp) => {
@@ -108,10 +76,11 @@
 		const minute = date.getMinutes();
 		const second = date.getSeconds();
 
-		const formattedDate = `${year}-${padZero(month)}-${padZero(day)}`;
+		// yyyy/MM/dd HH:mm:ss
+		const formattedDate = `${year}/${padZero(month)}/${padZero(day)}`;
 		const formattedTime = `${padZero(hour)}:${padZero(minute)}:${padZero(second)}`;
 
-		return formattedDate + formattedTime
+		return formattedDate + ' ' + formattedTime
 	};
 
 	// 辅助函数，用于补零
@@ -120,26 +89,51 @@
 	};
 
 	const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0, ) => {
-		uni.request({
-			url: 'https://api.suxin23.cn/blog/search',
-			method: 'GET',
-			data: {
-				page: pages,
-				pageSize: pageSizes,
-				keyword: keywords,
-				categoryId: categoryIds
-			},
-			success: (res) => {
-				total.value = Number(res.data.data.count);
-				detail_current.value = Number(res.data.data.page);
-				pageSize.value = Number(res.data.data.pageSize);
-				datalist.splice(0, datalist.length, ...res.data.data.rows); // 使用 splice 方法修改 datalist
-			},
-			fail: (err) => {
-				console.error(err);
-			}
-		});
+		// uni.request({
+		// 	url: 'https://api.suxin23.cn/articles/',
+		// 	method: 'GET',
+		// 	data: {
+		// 		page: pages,
+		// 		pageSize: pageSizes,
+		// 		keyword: keywords,
+		// 		categoryId: categoryIds
+		// 	},
+		// 	success: (res) => {
+		// 		// console.log(res.data.pagination);
+		// 		total.value = Number(res.data.pagination.total);
+		// 		detail_current.value = Number(res.data.pagination.page);
+		// 		pageSize.value = Number(res.data.pagination.pageSize);
+		// 		datalist.value = res.data.data
+		// 	},
+		// 	fail: (err) => {
+		// 		console.error(err);
+		// 	}
+		// });
+		get('/articles/', {
+			page: pages,
+			pageSize: pageSizes,
+			keyword: keywords,
+			categoryId: categoryIds
+		}).then(res => {
+			total.value = Number(res.data.pagination.total);
+			detail_current.value = Number(res.data.pagination.page);
+			pageSize.value = Number(res.data.pagination.pageSize);
+			datalist.value = res.data.data
+		})
 	};
+
+	const getSwiperList = () => {
+		get('/upload/imglist').then(res => {
+			// console.log(res.data.data)
+			lbt = res.data.data
+		})
+	}
+	// 
+	let onShareAppMessage =
+		wx.showShareMenu({
+			withShareTicket: true,
+			menu: ['shareAppMessage', 'shareTimeline']
+		})
 
 	onLoad(() => {
 		uni.getSystemInfo({
@@ -152,7 +146,7 @@
 				statusBarHeight.value = statusBar
 				// console.log('statusBar:',statusBar,'titleBar:' ,titleBar);
 				// console.log(statusBarHeight.value);
-				console.log(wx.getMenuButtonBoundingClientRect());
+				// console.log(wx.getMenuButtonBoundingClientRect());
 				searchBarStyle.value =
 					`margin-top: ${wx.getMenuButtonBoundingClientRect().top - 7}px; width: ${wx.getSystemInfoSync().screenWidth - wx.getMenuButtonBoundingClientRect().width - 10}px;`
 			}
@@ -162,15 +156,8 @@
 
 	onReady(() => {
 
-		uni.request({
-			url: 'https://api.suxin23.cn/lbt/imglist', //仅为示例，并非真实接口地址。
-			success: (res) => {
-				lbt.push(...res.data.data)
-
-			}
-		});
-
 		fetchBlogData()
+		getSwiperList()
 	})
 	const changeinput = (() => {
 		detail_current.value = 1

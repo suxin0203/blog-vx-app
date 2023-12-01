@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/component/me",
     "pages/component/add",
-    "pages/component/blog-detail"
+    "pages/component/detail",
+    "pages/component/login/login",
+    "pages/component/userinfo/userinfo"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -37,5 +39,8 @@
       }
     ]
   },
+  "onShareTimeline": true,
+  "onAddToFavorites": true,
+  "permission": {},
   "usingComponents": {}
 }

@@ -1,12 +1,60 @@
 
+.example {
+		margin-top: 40px
+}
+.userheader {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+}
 .avatar-wrapper {
 		margin-top: 10px;
 		padding: 0;
-		height: 200rpx;
-		width: 200rpx;
+		height: 100rpx;
+		width: 100rpx;
 }
 .avatar {
 		background: #fff;
-		height: 200rpx;
-		width: 200rpx;
+		height: 100rpx;
+		width: 100rpx;
+}
+.countshow {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+}
+.article_count {
+		height: 100rpx;
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 18px;
+		font-weight: 600;
+}
+.article_count:first-child {
+		border-left: 2px solid grey;
+		border-radius: 10px;
+}
+.article_count:last-child {
+		border-right: 2px solid grey;
+		border-radius: 10px;
+}
+
+/* 	.article_count {
+		border-right: 2px solid grey;
+	} */
+.custom-li {
+		padding-left: 20px;
+		height: 60px;
+		font-size: 16px;
+		line-height: 60px;
+		border-radius: 15px;
+		border-bottom: 1px solid gray;
+		/* background-color: #3F857A; */
+		margin-top: 5px;
+}
+.custom-li:hover {
+		/* 添加点击效果，例如改变背景色或添加阴影 */
+		background-color: #f0f0f0;
 }

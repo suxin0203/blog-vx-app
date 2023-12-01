@@ -3,7 +3,14 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				  "navigationStyle": "custom"
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "首 页"
+			},
+			"meta": {
+				"title": "首页",
+				"share": true, // 允许分享
+				"shareTitle": "文章分享",
+				"sharePath": "pages/index/index"
 			}
 		}, {
 			"path": "pages/component/me",
@@ -20,9 +27,22 @@
 			}
 
 		}, {
-			"path": "pages/component/blog-detail",
+			"path": "pages/component/detail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "文章详情",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/component/login/login",
+			"style": {
+				"navigationBarTitleText": "用户登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/component/userinfo/userinfo",
+			"style": {
+				"navigationBarTitleText": "编辑个人信息",
 				"enablePullDownRefresh": false
 			}
 

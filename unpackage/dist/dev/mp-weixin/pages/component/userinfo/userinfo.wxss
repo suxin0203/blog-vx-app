@@ -1,0 +1,15 @@
+
+.avatar-wrapper {
+		padding: 0;
+		height: 200rpx;
+		width: 200rpx;
+		border-radius: 100rpx;
+		background-color: #fff;
+		border: 1rpx solid grey;
+}
+.avatar {
+		background: #fff;
+		height: 200rpx;
+		width: 200rpx;
+		border-radius: 100rpx;
+}
