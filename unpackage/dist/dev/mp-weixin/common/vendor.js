@@ -1502,7 +1502,7 @@ function populateParameters(fromRes, toRes) {
   const hostLanguage = language.replace(/_/g, "-");
   const parameters = {
     appId: "__UNI__11BDF93",
-    appName: "suxinblog",
+    appName: "Suxin's Blog",
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
@@ -1646,7 +1646,7 @@ const getAppBaseInfo = {
       hostSDKVersion: SDKVersion,
       hostTheme: theme,
       appId: "__UNI__11BDF93",
-      appName: "suxinblog",
+      appName: "Suxin's Blog",
       appVersion: "1.0.0",
       appVersionCode: "100",
       appLanguage: getAppLanguage(hostLanguage)
@@ -7077,7 +7077,6 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
-const onReady = /* @__PURE__ */ createHook(ON_READY);
 const pages = [
   {
     path: "pages/index/index",
@@ -7101,13 +7100,23 @@ const pages = [
   },
   {
     path: "pages/component/add",
+    share: true,
     style: {
       navigationBarTitleText: "文章发表",
       enablePullDownRefresh: false
     }
   },
   {
+    path: "pages/menu/utils",
+    share: true,
+    style: {
+      navigationBarTitleText: "小工具",
+      enablePullDownRefresh: false
+    }
+  },
+  {
     path: "pages/component/detail",
+    share: true,
     style: {
       navigationBarTitleText: "文章详情",
       enablePullDownRefresh: false
@@ -7115,6 +7124,7 @@ const pages = [
   },
   {
     path: "pages/component/login/login",
+    share: true,
     style: {
       navigationBarTitleText: "用户登录",
       enablePullDownRefresh: false
@@ -7148,10 +7158,10 @@ const tabBar = {
       text: "主页"
     },
     {
-      pagePath: "pages/component/add",
+      pagePath: "pages/menu/utils",
       iconPath: "static/icon/rcd-plus-circle.png",
       selectedIconPath: "static/icon/rcd-plus-circle-f.png",
-      text: "发表"
+      text: "工具"
     },
     {
       pagePath: "pages/component/me",
@@ -9862,10 +9872,8 @@ exports.n = n$1;
 exports.o = o$1;
 exports.onLoad = onLoad;
 exports.onMounted = onMounted;
-exports.onReady = onReady;
 exports.onUnmounted = onUnmounted;
 exports.p = p$1;
-exports.reactive = reactive;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;
 exports.s = s$1;

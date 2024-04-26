@@ -66,7 +66,7 @@ const _sfc_main = {
             if (useinfoStatus.data.code === 200) {
               saveToken(useinfoStatus);
               common_vendor.index.reLaunch({
-                url: "/pages/index/index",
+                url: "/pages/component/me",
                 // 刷新后打开的页面路径
                 success: () => {
                   console.log("uni-app刷新成功");
@@ -98,7 +98,7 @@ const _sfc_main = {
       if (loginStatus.data.code === 200) {
         saveToken(loginStatus);
         common_vendor.index.reLaunch({
-          url: "/pages/index/index",
+          url: "/pages/component/me",
           // 刷新后打开的页面路径
           success: () => {
             console.log("uni-app刷新成功");

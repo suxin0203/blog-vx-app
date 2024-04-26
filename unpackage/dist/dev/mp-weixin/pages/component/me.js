@@ -4,14 +4,20 @@ const common_assets = require("../../common/assets.js");
 if (!Array) {
   const _easycom_uni_popup_message2 = common_vendor.resolveComponent("uni-popup-message");
   const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
+  const _easycom_uni_easyinput2 = common_vendor.resolveComponent("uni-easyinput");
+  const _easycom_uni_section2 = common_vendor.resolveComponent("uni-section");
+  const _easycom_uni_popup_dialog2 = common_vendor.resolveComponent("uni-popup-dialog");
   const _easycom_uni_card2 = common_vendor.resolveComponent("uni-card");
-  (_easycom_uni_popup_message2 + _easycom_uni_popup2 + _easycom_uni_card2)();
+  (_easycom_uni_popup_message2 + _easycom_uni_popup2 + _easycom_uni_easyinput2 + _easycom_uni_section2 + _easycom_uni_popup_dialog2 + _easycom_uni_card2)();
 }
 const _easycom_uni_popup_message = () => "../../uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.js";
 const _easycom_uni_popup = () => "../../uni_modules/uni-popup/components/uni-popup/uni-popup.js";
+const _easycom_uni_easyinput = () => "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js";
+const _easycom_uni_section = () => "../../uni_modules/uni-section/components/uni-section/uni-section.js";
+const _easycom_uni_popup_dialog = () => "../../uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.js";
 const _easycom_uni_card = () => "../../uni_modules/uni-card/components/uni-card/uni-card.js";
 if (!Math) {
-  (_easycom_uni_popup_message + _easycom_uni_popup + _easycom_uni_card)();
+  (_easycom_uni_popup_message + _easycom_uni_popup + _easycom_uni_easyinput + _easycom_uni_section + _easycom_uni_popup_dialog + _easycom_uni_card)();
 }
 const _sfc_main = {
   __name: "me",
@@ -19,20 +25,44 @@ const _sfc_main = {
     let msgType = common_vendor.ref("");
     let messageText = common_vendor.ref("");
     const message = common_vendor.ref(null);
+    const inputDialog = common_vendor.ref(null);
     let logindata = common_vendor.ref({});
     let avatar_url = common_vendor.ref(common_assets.avatar);
     let total = common_vendor.ref(10);
     let nickname = common_vendor.ref("点击登录");
     common_vendor.onLoad(() => {
+      console.log("个人中心");
       checklogin();
     });
     common_vendor.onMounted(() => {
+      console.log("挂载监听");
       common_vendor.index.$on("loginSuccess", checklogin);
+      common_vendor.index.$on("userinfoSuccess", updateInfo);
     });
     common_vendor.onUnmounted(() => {
       common_vendor.index.$off("loginSuccess", checklogin);
+      common_vendor.index.$off("userinfoSuccess", updateInfo);
     });
+    const inputDialogToggle = () => {
+      inputDialog.value.open();
+    };
+    const updateInfo = (userinfo) => {
+      console.log("头像更新成功");
+      avatar_url.value = userinfo.avatar_url;
+      nickname.value = userinfo.nickname;
+    };
     const checkArticle = () => {
+      const userinfo = common_vendor.index.getStorageSync("userinfo");
+      if (userinfo.is_root) {
+        common_vendor.index.navigateTo({
+          url: `/pages/component/add`
+          // 跳转到登录页面
+        });
+      } else {
+        msgType.value = "error";
+        messageText.value = "网络繁忙";
+        message.value.open();
+      }
     };
     const readToken = () => {
       return new Promise((resolve, reject) => {
@@ -102,26 +132,70 @@ const _sfc_main = {
         c: common_vendor.p({
           type: "message"
         }),
-        d: common_vendor.unref(avatar_url),
-        e: common_vendor.t(common_vendor.unref(nickname)),
-        f: common_vendor.o(tologon),
-        g: common_vendor.unref(nickname) !== "点击登录"
+        d: common_vendor.o(_ctx.input),
+        e: common_vendor.o(($event) => _ctx.value = $event),
+        f: common_vendor.p({
+          errorMessage: true,
+          focus: true,
+          placeholder: "请输入原密码",
+          modelValue: _ctx.value
+        }),
+        g: common_vendor.p({
+          title: "原密码",
+          type: "line",
+          padding: true
+        }),
+        h: common_vendor.o(_ctx.input),
+        i: common_vendor.o(($event) => _ctx.value = $event),
+        j: common_vendor.p({
+          errorMessage: true,
+          focus: true,
+          placeholder: "请输入新密码",
+          modelValue: _ctx.value
+        }),
+        k: common_vendor.o(_ctx.input),
+        l: common_vendor.o(($event) => _ctx.value = $event),
+        m: common_vendor.p({
+          errorMessage: true,
+          focus: true,
+          placeholder: "请重新输入新密码",
+          modelValue: _ctx.value
+        }),
+        n: common_vendor.p({
+          title: "新密码",
+          type: "line",
+          padding: true
+        }),
+        o: common_vendor.p({
+          title: "密码修改"
+        }),
+        p: common_vendor.sr(inputDialog, "8d85b864-2", {
+          "k": "inputDialog"
+        }),
+        q: common_vendor.p({
+          type: "dialog"
+        }),
+        r: common_vendor.unref(avatar_url),
+        s: common_vendor.t(common_vendor.unref(nickname)),
+        t: common_vendor.o(tologon),
+        v: common_vendor.unref(nickname) !== "点击登录"
       }, common_vendor.unref(nickname) !== "点击登录" ? {
-        h: common_vendor.t(common_vendor.unref(total)),
-        i: common_vendor.t(common_vendor.unref(total))
+        w: common_vendor.t(common_vendor.unref(total)),
+        x: common_vendor.t(common_vendor.unref(total))
       } : {}, {
-        j: common_vendor.unref(nickname) !== "点击登录"
+        y: common_vendor.unref(nickname) !== "点击登录"
       }, common_vendor.unref(nickname) !== "点击登录" ? {
-        k: common_vendor.o(checkArticle),
-        l: common_vendor.o(loginout)
+        z: common_vendor.o(checkArticle),
+        A: common_vendor.o(inputDialogToggle),
+        B: common_vendor.o(loginout)
       } : {}, {
-        m: common_vendor.unref(nickname) !== "点击登录"
+        C: common_vendor.unref(nickname) !== "点击登录"
       }, common_vendor.unref(nickname) !== "点击登录" ? {
-        n: common_vendor.o(loginout)
+        D: common_vendor.o(loginout)
       } : {}, {
-        o: common_vendor.unref(nickname) !== "点击登录"
+        E: common_vendor.unref(nickname) !== "点击登录"
       }, common_vendor.unref(nickname) !== "点击登录" ? {
-        p: common_vendor.t(common_vendor.unref(logindata))
+        F: common_vendor.t(common_vendor.unref(logindata))
       } : {});
     };
   }

@@ -22,7 +22,7 @@ const _sfc_main = {
   setup(__props) {
     let searchBarStyle = common_vendor.ref("");
     let statusBarHeight = common_vendor.ref(0);
-    let lbt = common_vendor.reactive([]);
+    let lbt = common_vendor.ref([]);
     let datalist = common_vendor.ref([]);
     common_vendor.ref("");
     let current = common_vendor.ref(0);
@@ -31,6 +31,24 @@ const _sfc_main = {
     let pageSize = common_vendor.ref(8);
     let keyword = common_vendor.ref("");
     common_vendor.ref(0);
+    const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0) => {
+      common_api.get("/articles/", {
+        page: pages,
+        pageSize: pageSizes,
+        keyword: keywords,
+        categoryId: categoryIds
+      }).then((res) => {
+        total.value = Number(res.data.pagination.total);
+        detail_current.value = Number(res.data.pagination.page);
+        pageSize.value = Number(res.data.pagination.pageSize);
+        datalist.value = res.data.data;
+      });
+    };
+    const getSwiperList = () => {
+      common_api.get("/upload/imglist").then((res) => {
+        lbt.value = res.data.data;
+      });
+    };
     const checkCategory = (id) => {
       common_vendor.index.navigateTo({
         url: `/pages/component/detail?id=${id}`
@@ -51,29 +69,13 @@ const _sfc_main = {
     const padZero = (value) => {
       return value < 10 ? `0${value}` : value;
     };
-    const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0) => {
-      common_api.get("/articles/", {
-        page: pages,
-        pageSize: pageSizes,
-        keyword: keywords,
-        categoryId: categoryIds
-      }).then((res) => {
-        total.value = Number(res.data.pagination.total);
-        detail_current.value = Number(res.data.pagination.page);
-        pageSize.value = Number(res.data.pagination.pageSize);
-        datalist.value = res.data.data;
-      });
-    };
-    const getSwiperList = () => {
-      common_api.get("/upload/imglist").then((res) => {
-        lbt = res.data.data;
-      });
-    };
-    common_vendor.wx$1.showShareMenu({
+    common_vendor.index.showShareMenu({
       withShareTicket: true,
       menu: ["shareAppMessage", "shareTimeline"]
     });
     common_vendor.onLoad(() => {
+      fetchBlogData();
+      getSwiperList();
       common_vendor.index.getSystemInfo({
         success: (res) => {
           const statusBar = res.statusBarHeight || 0;
@@ -83,10 +85,6 @@ const _sfc_main = {
         }
       });
     });
-    common_vendor.onReady(() => {
-      fetchBlogData();
-      getSwiperList();
-    });
     const changeinput = () => {
       detail_current.value = 1;
       fetchBlogData(detail_current.value, pageSize.value, keyword.value);
@@ -95,7 +93,6 @@ const _sfc_main = {
       current.value = e.detail.current;
     };
     const changeDetail = (e) => {
-      console.log(e);
       detail_current.value = e.current;
       fetchBlogData(detail_current.value, pageSize.value, keyword.value);
     };
@@ -120,15 +117,12 @@ const _sfc_main = {
         }),
         f: common_vendor.o(change),
         g: common_vendor.unref(current),
-        h: common_vendor.o(_ctx.clickItem),
-        i: common_vendor.p({
+        h: common_vendor.p({
           info: common_vendor.unref(lbt),
           current: common_vendor.unref(current),
-          mode: _ctx.default,
-          ["dots-styles"]: _ctx.dotsStyles,
           field: "content"
         }),
-        j: common_vendor.f(common_vendor.unref(datalist), (item, k0, i0) => {
+        i: common_vendor.f(common_vendor.unref(datalist), (item, k0, i0) => {
           return {
             a: common_vendor.t(item.content),
             b: item.id,
@@ -140,21 +134,21 @@ const _sfc_main = {
             })
           };
         }),
-        k: common_vendor.p({
+        j: common_vendor.p({
           title: "文章",
           type: "line",
           titleFontSize: "18px"
         }),
-        l: common_vendor.o(changeDetail),
-        m: common_vendor.p({
+        k: common_vendor.o(changeDetail),
+        l: common_vendor.p({
           current: common_vendor.unref(detail_current),
           total: common_vendor.unref(total),
           pageSize: common_vendor.unref(pageSize),
           ["show-icon"]: true
         }),
-        n: common_vendor.t(common_vendor.unref(detail_current)),
-        o: common_vendor.t(common_vendor.unref(total)),
-        p: common_vendor.t(common_vendor.unref(pageSize))
+        m: common_vendor.t(common_vendor.unref(detail_current)),
+        n: common_vendor.t(common_vendor.unref(total)),
+        o: common_vendor.t(common_vendor.unref(pageSize))
       };
     };
   }

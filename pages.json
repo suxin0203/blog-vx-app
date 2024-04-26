@@ -1,5 +1,5 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -8,71 +8,88 @@
 			},
 			"meta": {
 				"title": "首页",
-				"share": true, // 允许分享
+				"share": true,
 				"shareTitle": "文章分享",
 				"sharePath": "pages/index/index"
 			}
-		}, {
+		},
+		{
 			"path": "pages/component/me",
 			"style": {
 				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/component/add",
+			"share": true,
 			"style": {
 				"navigationBarTitleText": "文章发表",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
+			"path": "pages/menu/utils",
+			"share": true,
+			"style": {
+				"navigationBarTitleText": "小工具",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/component/detail",
+			"share": true,
 			"style": {
 				"navigationBarTitleText": "文章详情",
 				"enablePullDownRefresh": false
 			}
-		}, {
+		},
+		{
 			"path": "pages/component/login/login",
+			"share": true,
 			"style": {
 				"navigationBarTitleText": "用户登录",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		},
+		{
 			"path": "pages/component/userinfo/userinfo",
 			"style": {
 				"navigationBarTitleText": "编辑个人信息",
 				"enablePullDownRefresh": false
 			}
-
 		}
 	],
-
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-
 	"uniIdRouter": {},
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#3cc51f",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/index/index",
 				"iconPath": "static/icon/rcd-home.png",
 				"selectedIconPath": "static/icon/rcd-home-f.png",
 				"text": "主页"
 			},
+			// {
+			// 	"pagePath": "pages/component/add",
+			// 	"iconPath": "static/icon/rcd-plus-circle.png",
+			// 	"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
+			// 	"text": "发表"
+			// },
 			{
-				"pagePath": "pages/component/add",
+				"pagePath": "pages/menu/utils",
 				"iconPath": "static/icon/rcd-plus-circle.png",
 				"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-				"text": "发表"
+				"text": "工具"
 			},
 			{
 				"pagePath": "pages/component/me",

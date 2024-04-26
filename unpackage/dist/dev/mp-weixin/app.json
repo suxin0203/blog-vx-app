@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/component/me",
     "pages/component/add",
+    "pages/menu/utils",
     "pages/component/detail",
     "pages/component/login/login",
     "pages/component/userinfo/userinfo"
@@ -26,10 +27,10 @@
         "text": "主页"
       },
       {
-        "pagePath": "pages/component/add",
+        "pagePath": "pages/menu/utils",
         "iconPath": "static/icon/rcd-plus-circle.png",
         "selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-        "text": "发表"
+        "text": "工具"
       },
       {
         "pagePath": "pages/component/me",

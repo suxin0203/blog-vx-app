@@ -5,8 +5,7 @@
 				cancelButton="none" @confirm="changeinput" />
 		</view>
 		<view class="uni-margin-wrap">
-			<uni-swiper-dot class="uni-swiper-dot-box" @clickItem=clickItem :info="lbt" :current="current"
-				:mode="default" :dots-styles="dotsStyles" field="content">
+			<uni-swiper-dot class="uni-swiper-dot-box" :info="lbt" :current="current" field="content">
 				<swiper class="swiper-box" @change="change" :current="current">
 					<swiper-item v-for="(item, index) in lbt" :key="index">
 						<view class="swiper-item" :class="'swiper-item' + index">
@@ -51,7 +50,7 @@
 
 	let searchBarStyle = ref('')
 	let statusBarHeight = ref(0)
-	let lbt = reactive([])
+	let lbt = ref([])
 	let datalist = ref([])
 	let selectvalue = ref('')
 	let current = ref(0)
@@ -60,6 +59,28 @@
 	let pageSize = ref(8)
 	let keyword = ref("")
 	let categoryId = ref(0)
+
+	const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0, ) => {
+		get('/articles/', {
+			page: pages,
+			pageSize: pageSizes,
+			keyword: keywords,
+			categoryId: categoryIds
+		}).then(res => {
+			total.value = Number(res.data.pagination.total);
+			detail_current.value = Number(res.data.pagination.page);
+			pageSize.value = Number(res.data.pagination.pageSize);
+			datalist.value = res.data.data
+		})
+	};
+
+	const getSwiperList = () => {
+		get('/upload/imglist').then(res => {
+			// console.log('获取接口轮播图', res.data.data)
+			lbt.value = res.data.data
+		})
+	}
+
 
 
 	const checkCategory = (id) => {
@@ -88,77 +109,33 @@
 		return value < 10 ? `0${value}` : value;
 	};
 
-	const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0, ) => {
-		// uni.request({
-		// 	url: 'https://api.suxin23.cn/articles/',
-		// 	method: 'GET',
-		// 	data: {
-		// 		page: pages,
-		// 		pageSize: pageSizes,
-		// 		keyword: keywords,
-		// 		categoryId: categoryIds
-		// 	},
-		// 	success: (res) => {
-		// 		// console.log(res.data.pagination);
-		// 		total.value = Number(res.data.pagination.total);
-		// 		detail_current.value = Number(res.data.pagination.page);
-		// 		pageSize.value = Number(res.data.pagination.pageSize);
-		// 		datalist.value = res.data.data
-		// 	},
-		// 	fail: (err) => {
-		// 		console.error(err);
-		// 	}
-		// });
-		get('/articles/', {
-			page: pages,
-			pageSize: pageSizes,
-			keyword: keywords,
-			categoryId: categoryIds
-		}).then(res => {
-			total.value = Number(res.data.pagination.total);
-			detail_current.value = Number(res.data.pagination.page);
-			pageSize.value = Number(res.data.pagination.pageSize);
-			datalist.value = res.data.data
-		})
-	};
 
-	const getSwiperList = () => {
-		get('/upload/imglist').then(res => {
-			// console.log(res.data.data)
-			lbt = res.data.data
-		})
-	}
-	// 
+
 	let onShareAppMessage =
-		wx.showShareMenu({
+		uni.showShareMenu({
 			withShareTicket: true,
 			menu: ['shareAppMessage', 'shareTimeline']
 		})
 
 	onLoad(() => {
+		fetchBlogData()
+		getSwiperList()
+		
 		uni.getSystemInfo({
 			success: (res) => {
 				// 获取顶部导航栏的高度
 				const statusBar = res.statusBarHeight || 0;
 				const titleBar = res.titleBarHeight || 0;
-
 				// 将获取到的高度保存在 data 中
 				statusBarHeight.value = statusBar
-				// console.log('statusBar:',statusBar,'titleBar:' ,titleBar);
-				// console.log(statusBarHeight.value);
-				// console.log(wx.getMenuButtonBoundingClientRect());
 				searchBarStyle.value =
 					`margin-top: ${wx.getMenuButtonBoundingClientRect().top - 7}px; width: ${wx.getSystemInfoSync().screenWidth - wx.getMenuButtonBoundingClientRect().width - 10}px;`
 			}
 		});
-
 	})
 
-	onReady(() => {
 
-		fetchBlogData()
-		getSwiperList()
-	})
+
 	const changeinput = (() => {
 		detail_current.value = 1
 		fetchBlogData(detail_current.value, pageSize.value, keyword.value)
@@ -168,7 +145,7 @@
 		current.value = e.detail.current
 	})
 	const changeDetail = ((e) => {
-		console.log(e);
+		// console.log(e);
 		detail_current.value = e.current
 		fetchBlogData(detail_current.value, pageSize.value, keyword.value)
 	})
@@ -180,24 +157,21 @@
 	}
 
 	.uni-margin-wrap {
-		width: 100%;
+		width: 100vw;
 		height: auto;
 	}
 
+	.swiper-box {
+		width: 100vw;
+		min-height: 36vw;
+	}
+
 	.lbt {
-		width: 100%;
+		width: 100vw;
+		height: 35.89vw;
 	}
 
-	.main {
-		height: 100px;
-		line-height: 100px;
-		text-align: center;
-		width: 100%;
-	}
 
-	.cardli {
-		width: 95vw;
-	}
 
 	.card-actions {
 		margin: 5px;

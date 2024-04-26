@@ -3,7 +3,7 @@
     "projectname": "TestProject",
     "setting": {
         "compileHotReLoad": true,
-        "urlCheck": false
+        "urlCheck": true
     },
-    "libVersion": "3.0.1"
+    "libVersion": "3.2.3"
 }

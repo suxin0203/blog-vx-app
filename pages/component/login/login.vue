@@ -1,4 +1,5 @@
 <template>
+<div>
 	<view>
 		<!-- 提示信息弹窗 -->
 		<uni-popup ref="message" type="message">
@@ -24,6 +25,7 @@
 	<uni-card>
 		<text>{{logindata}}</text>
 	</uni-card>
+</div>
 </template>
 
 <script setup>
@@ -94,7 +96,7 @@
 					if (useinfoStatus.data.code === 200) {
 						saveToken(useinfoStatus)
 						uni.reLaunch({
-							url: '/pages/index/index', // 刷新后打开的页面路径
+							url: '/pages/component/me', // 刷新后打开的页面路径
 							success: () => {
 								console.log('uni-app刷新成功');
 							},
@@ -128,7 +130,7 @@
 		if (loginStatus.data.code === 200) {
 			saveToken(loginStatus)
 			uni.reLaunch({
-				url: '/pages/index/index', // 刷新后打开的页面路径
+				url: '/pages/component/me', // 刷新后打开的页面路径
 				success: () => {
 					console.log('uni-app刷新成功');
 				},

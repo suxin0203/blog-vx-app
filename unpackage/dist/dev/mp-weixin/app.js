@@ -5,6 +5,7 @@ if (!Math) {
   "./pages/index/index.js";
   "./pages/component/me.js";
   "./pages/component/add.js";
+  "./pages/menu/utils.js";
   "./pages/component/detail.js";
   "./pages/component/login/login.js";
   "./pages/component/userinfo/userinfo.js";

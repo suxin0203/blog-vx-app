@@ -26,12 +26,6 @@
         "text": "主页"
       },
       {
-        "pagePath": "pages/component/add",
-        "iconPath": "static/icon/rcd-plus-circle.png",
-        "selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-        "text": "发表"
-      },
-      {
         "pagePath": "pages/component/me",
         "iconPath": "static/icon/rcd-user.png",
         "selectedIconPath": "static/icon/rcd-user-f.png",

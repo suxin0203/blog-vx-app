@@ -1,4 +1,5 @@
 <template>
+<div>
 	<view>
 		<!-- 提示信息弹窗 -->
 		<uni-popup ref="message" type="message">
@@ -27,6 +28,7 @@
 		</view>
 
 	</uni-section>
+	</div>
 </template>
 
 <script setup>
