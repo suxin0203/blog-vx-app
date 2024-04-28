@@ -42,14 +42,23 @@ const _sfc_main = {
       message.value.open();
     };
     const getinfo = async () => {
-      let res = await common_api.post("/cbd/qrcode", baseFormData.value);
-      if (res.code === 200) {
-        openMessage(res.msg ? res.msg : "成功", "success");
+      common_vendor.index.showToast({
+        title: "生成中...",
+        duration: 2e3,
+        icon: "loading"
+      });
+      let res = await common_api.get("/utils/", baseFormData.value);
+      if (res.data.code === 200) {
+        openMessage(res.data.msg ? res.data.msg : "成功", "success");
         common_vendor.index.previewImage({
-          urls: [res.data]
+          urls: [res.data.data.filePath],
+          longPressActions: {
+            itemList: ["发送给朋友", "保存图片"]
+          }
         });
+        common_vendor.index.hideToast();
       } else {
-        openMessage(res.msg ? res.msg : "失败", "error");
+        openMessage(res.data.message, "error");
       }
     };
     common_vendor.onLoad(() => {
@@ -107,7 +116,6 @@ const _sfc_main = {
         }),
         k: common_vendor.o(($event) => common_vendor.unref(baseFormData).token = $event),
         l: common_vendor.p({
-          type: "password",
           placeholder: "请输入账号TOKEN",
           modelValue: common_vendor.unref(baseFormData).token
         }),
@@ -122,7 +130,7 @@ const _sfc_main = {
           ["label-position"]: "top"
         }),
         q: common_vendor.p({
-          title: "二维码生成"
+          title: "CBD二维码生成"
         })
       };
     };

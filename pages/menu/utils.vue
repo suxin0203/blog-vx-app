@@ -12,7 +12,7 @@
     </view>
     <uni-notice-bar show-icon text="功能仅供测试，如有问题请及时反馈！" />
     <!-- 输入ID和活动类型 -->
-    <uni-card title="二维码生成">
+    <uni-card title="CBD二维码生成">
       <uni-forms ref="baseForm" :modelValue="baseFormData" label-position="top">
         <uni-forms-item label="活动ID:" required>
           <uni-easyinput
@@ -37,12 +37,11 @@
         </uni-forms-item>
         <uni-forms-item label="TOKEN:" required>
           <uni-easyinput
-            type="password"
             v-model="baseFormData.token"
             placeholder="请输入账号TOKEN"
           ></uni-easyinput>
         </uni-forms-item>
-        <button type="primary" @click="getinfo" style="margin-top: 10px">
+        <button type="primary" @click="getinfo" style="margin: 30px 0">
           一键生成
         </button>
       </uni-forms>
@@ -75,14 +74,24 @@ const openMessage = (value = "成功", status = "success") => {
 };
 
 const getinfo = async () => {
-  let res = await post("/cbd/qrcode", baseFormData.value);
-  if (res.code === 200) {
-    openMessage(res.msg ? res.msg : "成功", "success");
+  uni.showToast({
+    title: "生成中...",
+    duration: 2000,
+    icon: "loading",
+  });
+  let res = await get("/utils/", baseFormData.value);
+  if (res.data.code === 200) {
+    openMessage(res.data.msg ? res.data.msg : "成功", "success");
     uni.previewImage({
-      urls: [res.data],
+      urls: [res.data.data.filePath],
+      longPressActions: {
+        itemList: ["发送给朋友", "保存图片"],
+      },
     });
+    // 隐藏加载框
+    uni.hideToast();
   } else {
-    openMessage(res.msg ? res.msg : "失败", "error");
+    openMessage(res.data.message, "error");
   }
 };
 
