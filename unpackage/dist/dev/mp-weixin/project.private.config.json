@@ -3,7 +3,8 @@
     "projectname": "TestProject",
     "setting": {
         "compileHotReLoad": true,
-        "urlCheck": true
+        "urlCheck": false,
+        "skylineRenderEnable": true
     },
-    "libVersion": "3.2.3"
+    "libVersion": "3.8.7"
 }

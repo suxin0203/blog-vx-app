@@ -1,6 +1,6 @@
 "use strict";
-const uni_modules_uniTransition_components_uniTransition_createAnimation = require("./createAnimation.js");
 const common_vendor = require("../../../../common/vendor.js");
+const uni_modules_uniTransition_components_uniTransition_createAnimation = require("./createAnimation.js");
 const _sfc_main = {
   name: "uniTransition",
   emits: ["click", "change"],
@@ -115,7 +115,7 @@ const _sfc_main = {
             this.animation[i](obj[i]);
           }
         } catch (e) {
-          console.error(`方法 ${i} 不存在`);
+          common_vendor.index.__f__("error", "at uni_modules/uni-transition/components/uni-transition/uni-transition.vue:139", `方法 ${i} 不存在`);
         }
       }
       this.animation.step(config);
@@ -258,5 +258,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     e: common_vendor.o((...args) => $options.onClick && $options.onClick(...args))
   } : {});
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/uni_modules/uni-transition/components/uni-transition/uni-transition.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
 wx.createComponent(Component);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-transition/components/uni-transition/uni-transition.js.map

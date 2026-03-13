@@ -139,5 +139,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     w: $data.dots.bottom + "px"
   } : {});
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-0667e3db"], ["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/uni_modules/uni-swiper-dot/components/uni-swiper-dot/uni-swiper-dot.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-0667e3db"]]);
 wx.createComponent(Component);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-swiper-dot/components/uni-swiper-dot/uni-swiper-dot.js.map

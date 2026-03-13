@@ -44,7 +44,6 @@
 		onReady
 	} from '@dcloudio/uni-app';
 
-
 	let msgType = ref("")
 	let messageText = ref("")
 	const message = ref(null);
@@ -158,6 +157,9 @@
 			res.data.code === 200 ? login() : ''
 		})
 	})
+	
+	
+	
 </script>
 
 <style>

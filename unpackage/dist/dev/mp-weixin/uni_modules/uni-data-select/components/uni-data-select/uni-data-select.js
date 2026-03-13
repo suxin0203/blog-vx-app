@@ -2,7 +2,7 @@
 const common_vendor = require("../../../../common/vendor.js");
 const _sfc_main = {
   name: "uni-stat-select",
-  mixins: [common_vendor.$s.mixinDatacom || {}],
+  mixins: [common_vendor.nr.mixinDatacom || {}],
   props: {
     localdata: {
       type: Array,
@@ -292,5 +292,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     r: $data.current ? 1 : ""
   });
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
 wx.createComponent(Component);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.js.map

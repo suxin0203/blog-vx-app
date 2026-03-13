@@ -116,19 +116,24 @@ const submit = async () => {
           Authorization: `Bearer ${token.value}`,
         },
       });
-      console.log("response:", response);
-      response = JSON.parse(response.data);
-      console.log("response:", response);
-      avatarUrl.value = response.data.href;
-      baseFormData.value.avatar_url = response.data.href; // 更新上传后的头像地址
+      console.log("uploadFile返回的response:", response);
+	  // {statusCode: 200, data: "{"errno":0,"code":200,"data":{"url":"/upload/20250604/044090ea-1089-4884-84af-df9c05a3dccf.jpeg","alt":"这是似乎是一张图片","href":"http://api.suxin23.cn/upload/20250604/044090ea-1089-4884-84af-df9c05a3dccf.jpeg"}}", header: {⁠...⁠}, cookies: [ ⁠...⁠ ], errMsg: "uploadFile:ok"}
+		if(response.statusCode ==200){
+		response = JSON.parse(response.data);
+		avatarUrl.value = response.data.href;
+		baseFormData.value.avatar_url = response.data.href; // 更新上传后的头像地址
+		}else{
+			console.log("上传失败response:", response);
+		}
       // ... 其他提交逻辑，可以在这里添加
+	  
     }
     const res = await put(
       `/users/token/${userinfo.value.id}`,
       baseFormData.value
     );
-    console.log(res.data);
-    if (res.data.code === 200) {
+    console.log("用户信息更新：",res.data);
+    if (res.data.message === "更新成功") {
       userinfo.value.nickname = baseFormData.value.nickname;
       userinfo.value.avatar_url = baseFormData.value.avatar_url;
       console.log(userinfo.value);

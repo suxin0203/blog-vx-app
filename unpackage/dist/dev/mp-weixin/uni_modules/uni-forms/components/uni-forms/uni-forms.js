@@ -1,7 +1,7 @@
 "use strict";
+const common_vendor = require("../../../../common/vendor.js");
 const uni_modules_uniForms_components_uniForms_validate = require("./validate.js");
 const uni_modules_uniForms_components_uniForms_utils = require("./utils.js");
-const common_vendor = require("../../../../common/vendor.js");
 const _sfc_main = {
   name: "uniForms",
   emits: ["validate", "submit"],
@@ -117,7 +117,7 @@ const _sfc_main = {
             }
           }
           if (!formVm)
-            return console.error("当前 uni-froms 组件缺少 ref 属性");
+            return common_vendor.index.__f__("error", "at uni_modules/uni-forms/components/uni-forms/uni-forms.vue:182", "当前 uni-froms 组件缺少 ref 属性");
           formVm.setValue(name, value);
         }
       };
@@ -213,7 +213,7 @@ const _sfc_main = {
         }
       }
       if (!type) {
-        console.warn("submit 方法即将废弃，请使用validate方法代替！");
+        common_vendor.index.__f__("warn", "at uni_modules/uni-forms/components/uni-forms/uni-forms.vue:289", "submit 方法即将废弃，请使用validate方法代替！");
       }
       return this.checkAll(this.formData, keepitem, callback, "submit");
     },
@@ -302,5 +302,6 @@ const _sfc_main = {
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {};
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/uni_modules/uni-forms/components/uni-forms/uni-forms.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
 wx.createComponent(Component);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms/uni-forms.js.map

@@ -59,3 +59,4 @@ function put(url, data = {}) {
 exports.get = get;
 exports.post = post;
 exports.put = put;
+//# sourceMappingURL=../../.sourcemap/mp-weixin/common/api.js.map

@@ -67,6 +67,7 @@ let baseFormData = ref({
 let token = ref();
 token.value = uni.getStorageSync("token");
 
+
 const openMessage = (value = "成功", status = "success") => {
   msgType.value = status;
   messageText.value = value;

@@ -12,7 +12,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -27,10 +28,10 @@
         "text": "主页"
       },
       {
-        "pagePath": "pages/menu/utils",
+        "pagePath": "pages/component/add",
         "iconPath": "static/icon/rcd-plus-circle.png",
         "selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-        "text": "工具"
+        "text": "发表"
       },
       {
         "pagePath": "pages/component/me",

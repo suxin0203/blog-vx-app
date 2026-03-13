@@ -69,10 +69,10 @@ const _sfc_main = {
                 url: "/pages/component/me",
                 // 刷新后打开的页面路径
                 success: () => {
-                  console.log("uni-app刷新成功");
+                  common_vendor.index.__f__("log", "at pages/component/login/login.vue:100", "uni-app刷新成功");
                 },
                 fail: (error) => {
-                  console.error("uni-app刷新失败", error);
+                  common_vendor.index.__f__("error", "at pages/component/login/login.vue:103", "uni-app刷新失败", error);
                 }
               });
             }
@@ -101,10 +101,10 @@ const _sfc_main = {
           url: "/pages/component/me",
           // 刷新后打开的页面路径
           success: () => {
-            console.log("uni-app刷新成功");
+            common_vendor.index.__f__("log", "at pages/component/login/login.vue:134", "uni-app刷新成功");
           },
           fail: (error) => {
-            console.error("uni-app刷新失败", error);
+            common_vendor.index.__f__("error", "at pages/component/login/login.vue:137", "uni-app刷新失败", error);
           }
         });
       } else {
@@ -132,7 +132,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        b: common_vendor.sr(message, "289ecc7d-0", {
+        b: common_vendor.sr(message, "7e85e942-0", {
           "k": "message"
         }),
         c: common_vendor.p({
@@ -167,7 +167,7 @@ const _sfc_main = {
       }, !common_vendor.unref(register) ? {
         o: common_vendor.o(wxlogin)
       } : {}, {
-        p: common_vendor.sr("baseForm", "289ecc7d-3,289ecc7d-2"),
+        p: common_vendor.sr("baseForm", "7e85e942-3,7e85e942-2"),
         q: common_vendor.p({
           modelValue: common_vendor.unref(baseFormData),
           ["label-position"]: "top"
@@ -180,5 +180,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/component/login/login.vue"]]);
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/component/login/login.js.map

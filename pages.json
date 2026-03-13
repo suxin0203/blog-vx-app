@@ -4,7 +4,10 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "首 页"
+				"navigationBarTitleText": "首 页",
+				"enablePullDownRefresh": true,  // 开启下拉刷新
+				"backgroundColor": "#f8f8f8",  // 下拉背景色（可选）
+				"backgroundTextStyle": "dark"   // 下拉loading样式（dark/light）
 			},
 			"meta": {
 				"title": "首页",
@@ -64,7 +67,9 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh": true
+		// ... 其他配置
 	},
 	"uniIdRouter": {},
 	"tabBar": {
@@ -79,18 +84,18 @@
 				"selectedIconPath": "static/icon/rcd-home-f.png",
 				"text": "主页"
 			},
-			// {
-			// 	"pagePath": "pages/component/add",
-			// 	"iconPath": "static/icon/rcd-plus-circle.png",
-			// 	"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-			// 	"text": "发表"
-			// },
 			{
-				"pagePath": "pages/menu/utils",
+				"pagePath": "pages/component/add",
 				"iconPath": "static/icon/rcd-plus-circle.png",
 				"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
-				"text": "工具"
+				"text": "发表"
 			},
+			// {
+			// 	"pagePath": "pages/menu/utils",
+			// 	"iconPath": "static/icon/rcd-plus-circle.png",
+			// 	"selectedIconPath": "static/icon/rcd-plus-circle-f.png",
+			// 	"text": "工具"
+			// },
 			{
 				"pagePath": "pages/component/me",
 				"iconPath": "static/icon/rcd-user.png",

@@ -30,19 +30,32 @@ const _sfc_main = {
     let detail_current = common_vendor.ref(1);
     let pageSize = common_vendor.ref(8);
     let keyword = common_vendor.ref("");
-    common_vendor.ref(0);
-    const fetchBlogData = (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0) => {
-      common_api.get("/articles/", {
-        page: pages,
-        pageSize: pageSizes,
-        keyword: keywords,
-        categoryId: categoryIds
-      }).then((res) => {
+    let categoryId = common_vendor.ref(0);
+    let loading = common_vendor.ref(false);
+    let noMoreData = common_vendor.ref(false);
+    const fetchBlogData = async (pages = 1, pageSizes = 8, keywords = "", categoryIds = 0, isLoadMore = false) => {
+      if (loading.value)
+        return;
+      loading.value = true;
+      try {
+        const res = await common_api.get("/articles/", {
+          page: pages,
+          pageSize: pageSizes,
+          keyword: keywords,
+          categoryId: categoryIds
+        });
         total.value = Number(res.data.pagination.total);
         detail_current.value = Number(res.data.pagination.page);
         pageSize.value = Number(res.data.pagination.pageSize);
-        datalist.value = res.data.data;
-      });
+        if (isLoadMore) {
+          datalist.value = [...datalist.value, ...res.data.data];
+        } else {
+          datalist.value = res.data.data;
+        }
+        noMoreData.value = datalist.value.length >= total.value;
+      } finally {
+        loading.value = false;
+      }
     };
     const getSwiperList = () => {
       common_api.get("/upload/imglist").then((res) => {
@@ -55,6 +68,7 @@ const _sfc_main = {
       });
     };
     const formatTime = (timestamp) => {
+      timestamp = Date.parse(timestamp);
       const date = new Date(timestamp);
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
@@ -85,9 +99,31 @@ const _sfc_main = {
         }
       });
     });
+    common_vendor.onPullDownRefresh(() => {
+      common_vendor.index.__f__("log", "at pages/index/index.vue:159", "触发下拉刷新");
+      detail_current.value = 1;
+      fetchBlogData(detail_current.value, pageSize.value, keyword.value).finally(() => {
+        common_vendor.index.stopPullDownRefresh();
+        common_vendor.index.showToast({ title: "刷新成功", icon: "none" });
+      });
+    });
+    common_vendor.onReachBottom(() => {
+      if (noMoreData.value || loading.value) {
+        common_vendor.index.showToast({ title: "没有更多数据了", icon: "none" });
+        return;
+      }
+      common_vendor.index.__f__("log", "at pages/index/index.vue:175", "触发上拉加载更多");
+      detail_current.value += 1;
+      fetchBlogData(detail_current.value, pageSize.value, keyword.value, categoryId.value, true);
+    });
     const changeinput = () => {
+      common_vendor.index.__f__("log", "at pages/index/index.vue:181", "changeinput事件");
       detail_current.value = 1;
       fetchBlogData(detail_current.value, pageSize.value, keyword.value);
+    };
+    const handleClear = () => {
+      keyword.value = "";
+      changeinput();
     };
     const change = (e) => {
       current.value = e.detail.current;
@@ -97,62 +133,66 @@ const _sfc_main = {
       fetchBlogData(detail_current.value, pageSize.value, keyword.value);
     };
     return (_ctx, _cache) => {
-      return {
-        a: common_vendor.o(changeinput),
-        b: common_vendor.o(($event) => common_vendor.isRef(keyword) ? keyword.value = $event : keyword = $event),
-        c: common_vendor.p({
+      return common_vendor.e({
+        a: common_vendor.o(($event) => changeinput()),
+        b: common_vendor.o(($event) => handleClear()),
+        c: common_vendor.o(($event) => common_vendor.isRef(keyword) ? keyword.value = $event : keyword = $event),
+        d: common_vendor.p({
           radius: "100",
           placeholder: "请输入想要搜的内容",
           clearButton: "auto",
           cancelButton: "none",
           modelValue: common_vendor.unref(keyword)
         }),
-        d: common_vendor.s(common_vendor.unref(searchBarStyle)),
-        e: common_vendor.f(common_vendor.unref(lbt), (item, index, i0) => {
+        e: common_vendor.s(common_vendor.unref(searchBarStyle)),
+        f: common_vendor.f(common_vendor.unref(lbt), (item, index, i0) => {
           return {
             a: item.href,
             b: common_vendor.n("swiper-item" + index),
             c: index
           };
         }),
-        f: common_vendor.o(change),
-        g: common_vendor.unref(current),
-        h: common_vendor.p({
+        g: common_vendor.o(change),
+        h: common_vendor.unref(current),
+        i: common_vendor.p({
           info: common_vendor.unref(lbt),
           current: common_vendor.unref(current),
           field: "content"
         }),
-        i: common_vendor.f(common_vendor.unref(datalist), (item, k0, i0) => {
+        j: common_vendor.f(common_vendor.unref(datalist), (item, k0, i0) => {
           return {
             a: common_vendor.t(item.content),
             b: item.id,
             c: common_vendor.o(($event) => checkCategory(item.id), item.id),
-            d: "4fa3e5a1-3-" + i0 + ",4fa3e5a1-2",
+            d: "173e44a6-3-" + i0 + ",173e44a6-2",
             e: common_vendor.p({
               title: item.title,
               extra: formatTime(item.created_at)
             })
           };
         }),
-        j: common_vendor.p({
+        k: common_vendor.p({
           title: "文章",
           type: "line",
           titleFontSize: "18px"
         }),
-        k: common_vendor.o(changeDetail),
-        l: common_vendor.p({
+        l: common_vendor.o(changeDetail),
+        m: common_vendor.p({
           current: common_vendor.unref(detail_current),
           total: common_vendor.unref(total),
           pageSize: common_vendor.unref(pageSize),
           ["show-icon"]: true
         }),
-        m: common_vendor.t(common_vendor.unref(detail_current)),
-        n: common_vendor.t(common_vendor.unref(total)),
-        o: common_vendor.t(common_vendor.unref(pageSize))
-      };
+        n: common_vendor.t(common_vendor.unref(detail_current)),
+        o: common_vendor.t(common_vendor.unref(total)),
+        p: common_vendor.t(common_vendor.unref(pageSize)),
+        q: common_vendor.unref(loading)
+      }, common_vendor.unref(loading) ? {} : {}, {
+        r: common_vendor.unref(noMoreData) && common_vendor.unref(datalist).length > 0
+      }, common_vendor.unref(noMoreData) && common_vendor.unref(datalist).length > 0 ? {} : {});
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/index/index.vue"]]);
 _sfc_main.__runtimeHooks = 2;
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/index/index.js.map

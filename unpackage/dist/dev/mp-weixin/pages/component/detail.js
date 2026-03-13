@@ -36,6 +36,6 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/component/detail.vue"]]);
 _sfc_main.__runtimeHooks = 2;
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/component/detail.js.map

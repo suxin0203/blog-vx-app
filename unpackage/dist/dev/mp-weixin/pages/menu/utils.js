@@ -70,7 +70,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        b: common_vendor.sr(message, "e77b3136-0", {
+        b: common_vendor.sr(message, "03e4d880-0", {
           "k": "message"
         }),
         c: common_vendor.p({
@@ -124,7 +124,7 @@ const _sfc_main = {
           required: true
         }),
         n: common_vendor.o(getinfo),
-        o: common_vendor.sr("baseForm", "e77b3136-4,e77b3136-3"),
+        o: common_vendor.sr("baseForm", "03e4d880-4,03e4d880-3"),
         p: common_vendor.p({
           modelValue: common_vendor.unref(baseFormData),
           ["label-position"]: "top"
@@ -136,5 +136,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/menu/utils.vue"]]);
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/menu/utils.js.map

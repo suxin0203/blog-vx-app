@@ -28,18 +28,19 @@ const _sfc_main = {
     const inputDialog = common_vendor.ref(null);
     let logindata = common_vendor.ref({});
     let avatar_url = common_vendor.ref(common_assets.avatar);
-    let total = common_vendor.ref(10);
+    let total = common_vendor.ref(999);
     let nickname = common_vendor.ref("点击登录");
-    common_vendor.onLoad(() => {
-      console.log("个人中心");
+    common_vendor.onReady(() => {
+      common_vendor.index.__f__("log", "at pages/component/me.vue:86", "个人中心onLoad");
       checklogin();
     });
     common_vendor.onMounted(() => {
-      console.log("挂载监听");
+      common_vendor.index.__f__("log", "at pages/component/me.vue:92", "挂载监听onMounted");
       common_vendor.index.$on("loginSuccess", checklogin);
       common_vendor.index.$on("userinfoSuccess", updateInfo);
     });
     common_vendor.onUnmounted(() => {
+      common_vendor.index.__f__("log", "at pages/component/me.vue:98", "挂载监听onUnmounted");
       common_vendor.index.$off("loginSuccess", checklogin);
       common_vendor.index.$off("userinfoSuccess", updateInfo);
     });
@@ -47,7 +48,7 @@ const _sfc_main = {
       inputDialog.value.open();
     };
     const updateInfo = (userinfo) => {
-      console.log("头像更新成功");
+      common_vendor.index.__f__("log", "at pages/component/me.vue:108", "头像更新成功");
       avatar_url.value = userinfo.avatar_url;
       nickname.value = userinfo.nickname;
     };
@@ -55,7 +56,7 @@ const _sfc_main = {
       const userinfo = common_vendor.index.getStorageSync("userinfo");
       if (userinfo.is_root) {
         common_vendor.index.navigateTo({
-          url: `/pages/component/add`
+          url: `/pages/menu/utils`
           // 跳转到登录页面
         });
       } else {
@@ -79,13 +80,21 @@ const _sfc_main = {
     const checklogin = () => {
       readToken().then(() => {
         const userinfo = common_vendor.index.getStorageSync("userinfo");
+        common_vendor.index.__f__("log", "at pages/component/me.vue:151", "userinfo", userinfo);
         avatar_url.value = userinfo.avatar_url;
         nickname.value = userinfo.nickname ? userinfo.nickname : userinfo.username;
         logindata.value = userinfo;
       }).catch(() => {
+        common_vendor.index.__f__("log", "at pages/component/me.vue:164", "用户未登录或登录态已过期，引导用户进行登录操作");
         common_vendor.index.navigateTo({
-          url: `/pages/component/login/login`
+          url: `/pages/component/login/login`,
           // 跳转到登录页面
+          success(res) {
+            common_vendor.index.__f__("log", "at pages/component/me.vue:168", "跳转成功", res);
+          },
+          fail(err) {
+            common_vendor.index.__f__("log", "at pages/component/me.vue:171", "跳转/pages/component/login/login失败", err);
+          }
         });
       });
     };
@@ -99,10 +108,10 @@ const _sfc_main = {
         url: "/pages/index/index",
         // 刷新后打开的页面路径
         success: () => {
-          console.log("uni-app刷新成功");
+          common_vendor.index.__f__("log", "at pages/component/me.vue:188", "uni-app刷新成功");
         },
         fail: (error) => {
-          console.error("uni-app刷新失败", error);
+          common_vendor.index.__f__("error", "at pages/component/me.vue:191", "uni-app刷新失败", error);
         }
       });
     };
@@ -126,7 +135,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        b: common_vendor.sr(message, "8d85b864-0", {
+        b: common_vendor.sr(message, "3622b52e-0", {
           "k": "message"
         }),
         c: common_vendor.p({
@@ -169,7 +178,7 @@ const _sfc_main = {
         o: common_vendor.p({
           title: "密码修改"
         }),
-        p: common_vendor.sr(inputDialog, "8d85b864-2", {
+        p: common_vendor.sr(inputDialog, "3622b52e-2", {
           "k": "inputDialog"
         }),
         q: common_vendor.p({
@@ -200,5 +209,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/component/me.vue"]]);
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/component/me.js.map

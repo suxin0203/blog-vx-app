@@ -198,5 +198,6 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     J: common_vendor.o((...args) => $options.onClick && $options.onClick(...args))
   }) : {});
 }
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-c3453ea3"], ["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-c3453ea3"]]);
 wx.createComponent(Component);
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar.js.map

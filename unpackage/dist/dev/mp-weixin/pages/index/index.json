@@ -1,6 +1,9 @@
 {
   "navigationStyle": "custom",
   "navigationBarTitleText": "首 页",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f8f8f8",
+  "backgroundTextStyle": "dark",
   "usingComponents": {
     "uni-search-bar": "../../uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar",
     "uni-swiper-dot": "../../uni_modules/uni-swiper-dot/components/uni-swiper-dot/uni-swiper-dot",

@@ -38,3 +38,9 @@
 .uni-searchbar {
 		padding: 5px 10px !important;
 }
+.loading-container, .no-more-container {
+	  padding: 20rpx;
+	  text-align: center;
+	  color: #999;
+	  font-size: 28rpx;
+}

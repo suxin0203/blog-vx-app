@@ -420,3 +420,4 @@ function Message() {
 }
 SchemaValidator.message = new Message();
 exports.SchemaValidator = SchemaValidator;
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-forms/components/uni-forms/validate.js.map

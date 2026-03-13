@@ -1171,3 +1171,4 @@ const icons = {
   ]
 };
 exports.icons = icons;
+//# sourceMappingURL=../../../../../.sourcemap/mp-weixin/uni_modules/uni-icons/components/uni-icons/icons.js.map

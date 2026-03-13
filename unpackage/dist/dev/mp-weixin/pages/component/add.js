@@ -65,7 +65,7 @@ const _sfc_main = {
           message: common_vendor.unref(messageText),
           duration: 2e3
         }),
-        b: common_vendor.sr(message, "1680124a-0", {
+        b: common_vendor.sr(message, "3f3ea8a0-0", {
           "k": "message"
         }),
         c: common_vendor.p({
@@ -106,7 +106,7 @@ const _sfc_main = {
           label: "内容",
           required: true
         }),
-        n: common_vendor.sr("baseForm", "1680124a-4,1680124a-3"),
+        n: common_vendor.sr("baseForm", "3f3ea8a0-4,3f3ea8a0-3"),
         o: common_vendor.p({
           modelValue: common_vendor.unref(baseFormData)
         }),
@@ -122,5 +122,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "E:/mySelfProjrct/blog-vx-app/blog-vx-app/pages/component/add.vue"]]);
-wx.createPage(MiniProgramPage);
+wx.createPage(_sfc_main);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/component/add.js.map
